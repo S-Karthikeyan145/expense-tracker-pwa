@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <script>
+    // ===== HARD AUTH GUARD (RUNS BEFORE RENDER) =====
+    if (!localStorage.getItem("auth_session")) {
+      window.location.replace("login.html");
+    }
+  </script>
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  
+  <meta charset="UTF-8">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <title>Dashboard | Expense Tracker</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar notion-navbar">
+    <h2 class="app-title">Expense Tracker</h2>
+
+    <div class="nav-actions">
+      <button id="installBtn" class="btn small ghost hidden">⭳ App </button>
+      <button id="themeToggle" class="btn small ghost">🌙</button>
+      <button id="logoutBtn" class="btn small">Logout</button>
+    </div>
+  </header>
+
+  <div id="networkStatus" class="network-status hidden">
+    📴 You’re offline. Changes are saved locally.
+  </div>
+  <div id="onboardingHint" class="onboarding-hint hidden">
+    <strong>Welcome 👋</strong>
+    <p>
+      This app works <b>offline-first</b>.<br>
+      Your expenses are saved locally and never lost.
+    </p>
+    <button id="dismissOnboarding" class="btn small">Got it</button>
+  </div>
+
+  <div id="dbErrorBanner" class="db-error hidden">
+    ⚠️ Storage issue detected. Changes are disabled.
+  </div>
+
+
+
+  <!-- UNDO -->
+  <div id="undoContainer" class="undo-container hidden">
+    <span>Expense deleted</span>
+    <button id="undoBtn">Undo</button>
+  </div>
+
+  <!-- MAIN -->
+  <main class="dashboard notion-dashboard">
+
+    <!-- SKELETON LOADER -->
+    <div id="skeletonLoader" class="skeleton-wrapper">
+      <div class="skeleton summary-skel"></div>
+      <div class="skeleton card-skel"></div>
+      <div class="skeleton card-skel"></div>
+    </div>
+
+    <!-- SUMMARY -->
+    <section class="summary notion-summary">
+      <div class="summary-card">
+        <h3>Total spent</h3>
+        <p id="totalSpent">₹0</p>
+      </div>
+
+      <div class="summary-card">
+        <h3>Monthly budget</h3>
+        <p id="monthlyBudget">₹0</p>
+      </div>
+
+      <div class="summary-card">
+        <h3>Remaining</h3>
+        <p id="remainingAmount">₹0</p>
+        <p id="budgetWarning" class="warning-text"></p>
+      </div>
+    </section>
+
+    <!-- INPUT SECTION -->
+    <section class="dashboard-grid notion-grid">
+
+      <!-- Budget -->
+      <div class="card notion-card">
+        <h3>Set budget</h3>
+
+        <div class="form-group">
+          <label for="budgetInput">Monthly budget</label>
+          <input id="budgetInput" type="number" placeholder="e.g. 15000">
+        </div>
+
+        <button id="setBudgetBtn" class="btn full">Save budget</button>
+      </div>
+
+      <!-- Expense -->
+      <div class="card notion-card">
+        <h3>Add expense</h3>
+
+        <form class="expense-form">
+          <input id="expenseTitle" type="text" placeholder="Expense title">
+          <input id="expenseAmount" type="number" placeholder="Amount">
+          <input id="expenseDate" type="date">
+
+          <select id="expenseCategory">
+            <option value="">Select category</option>
+            <option value="Food">🍔 Food</option>
+            <option value="Travel">🚕 Travel</option>
+            <option value="Rent">🏠 Rent</option>
+            <option value="Shopping">🛍 Shopping</option>
+            <option value="Utilities">💡 Utilities</option>
+            <option value="Other">📦 Other</option>
+          </select>
+        </form>
+
+        <button id="addExpenseBtn" class="btn full">Add expense</button>
+      </div>
+
+    </section>
+
+    <!-- TABLE -->
+    <section class="card notion-card">
+      <div class="table-header">
+        <h3>Recent expenses</h3>
+        <div class="table-actions">
+          <select id="categoryFilter">
+            <option value="All">All categories</option>
+            <option value="Food">Food</option>
+            <option value="Travel">Travel</option>
+            <option value="Rent">Rent</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Utilities">Utilities</option>
+            <option value="Other">Other</option>
+          </select>
+
+          <button id="exportCsvBtn" class="btn small">Export</button>
+          <button id="backupJsonBtn" class="btn small ghost">Backup</button>
+          
+          <input
+            type="file"
+            id="importJsonInput"
+            accept=".json"
+            hidden
+          />
+          <button id="importJsonBtn" class="btn small ghost">Import</button>
+          <button id="resetDataBtn" class="btn small danger">Reset</button>
+        </div>
+      </div>
+
+      <table class="expense-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="expenseTableBody">
+          
+        </tbody>
+      </table>
+    </section>
+
+    <!-- CHART -->
+    <section class="card notion-card">
+      <h3>Spending over time</h3>
+      <div class="chart-wrapper">
+        <canvas id="expenseChart"></canvas>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

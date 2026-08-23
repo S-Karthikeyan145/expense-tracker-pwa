@@ -1,0 +1,551 @@
+/* ================= RESET ================= */
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  user-select: none;
+}
+
+/* ================= BASE ================= */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Inter, Roboto, Helvetica, Arial, sans-serif;
+  background: #f9fafb;
+  color: #111827;
+  line-height: 1.6;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ================= NAVBAR ================= */
+.notion-navbar {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* ================= BUTTONS ================= */
+.btn {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  background: #4f46e5;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.btn.small {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+.btn.full {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.btn.ghost {
+  background: transparent;
+  border: 1px solid #e5e7eb;
+  color: #4f46e5;
+}
+
+/* ================= LAYOUT ================= */
+.notion-dashboard {
+  max-width: 1100px;
+  margin: auto;
+  padding: 36px 24px;
+}
+
+.notion-grid {
+  display: grid;
+  grid-template-columns: 0.75fr 1.25fr;
+  gap: 12px;
+
+}
+
+/* ================= SUMMARY ================= */
+.notion-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.summary-card {
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+}
+
+.summary-card h3 {
+  font-size: 13px;
+  font-weight: 500;
+  color: #6b7280;
+  /* line-height: 1.0; */
+}
+
+.summary-card p {
+  font-size: 30px;
+  font-weight: 600;
+  margin: 8px;
+  /* line-height: 1.0; */
+}
+
+/* ================= CARDS ================= */
+.notion-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 36px;
+  margin-bottom: 24px;
+}
+
+/* ================= FORMS ================= */
+label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  font-size: 15px;
+  background: #ffffff;
+}
+
+input::placeholder {
+  color: #9ca3af;
+}
+
+input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79,70,229,0.15);
+}
+
+select {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  font-size: 15px;
+  background: #ffffff;
+  color: #111827;
+}
+
+select:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79,70,229,0.15);
+}
+
+
+.expense-form {
+  display: grid;
+  grid-template-columns: 2.0fr 1.5fr 1.5fr 2.0fr;
+  gap: 12px;
+}
+
+
+/* ================= TABLE ================= */
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.table-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap; /* 🔥 THIS IS THE FIX */
+}
+
+.expense-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.expense-table th {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #6b7280;
+  padding: 14px 8px;
+  border-bottom: 1px solid #e5e7eb;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.expense-table td {
+  padding: 14px 8px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.expense-table th:nth-child(5),
+.expense-table td:nth-child(5) {
+  min-width: 110px;
+  color: #4b5563;
+  font-weight: 500;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.expense-table .btn.small {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+
+/* ================= UNDO ================= */
+.undo-container {
+  max-width: 1100px;
+  margin: 12px auto;
+  padding: 12px 20px;
+  background: #111827;
+  color: #ffffff;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.undo-container button {
+  background: transparent;
+  border: none;
+  color: #93c5fd;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ================= WARNINGS ================= */
+.warning-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #dc2626;
+}
+
+/* ================= DARK MODE ================= */
+body.dark {
+  background: #0b0f1a;
+  color: #e5e7eb;
+}
+
+body.dark .notion-navbar {
+  background: #0f172a;
+  border-color: #1e293b;
+}
+
+body.dark .notion-card,
+body.dark .summary-card {
+  background: #111827;
+  border-color: #1f2937;
+}
+
+body.dark input {
+  background: #0f172a;
+  color: #e5e7eb;
+  border-color: #334155;
+}
+
+body.dark select {
+  background: #0f172a;
+  color: #e5e7eb;
+  border-color: #334155;
+}
+
+body.dark input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 0.85;
+}
+
+body.dark .btn {
+  background: #6366f1;
+}
+
+body.dark .btn.ghost {
+  border-color: #475569;
+  color: #c7d2fe;
+}
+
+
+body.dark .btn.danger{
+  border-color: #475569;
+  color: #ffffff;
+  background: #dc2626;
+}
+
+
+/* ---- CHART SIZE CONTROL ---- */
+#expenseChart {
+  max-width: 100%;
+  height: 260px;
+}
+
+/* ---- CHART WRAPPER ---- */
+.chart-wrapper {
+  position: relative;
+  width: 100%;
+  height: 280px; /* desktop height */
+}
+
+.btn.danger {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+.btn.danger:hover {
+  background: #b91c1c;
+}
+
+
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .notion-summary {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+
+  .summary-card {
+    padding: 12px;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+  }
+
+
+  .notion-grid {
+    grid-template-columns: 1fr;
+    gap: 0px;
+
+  }
+
+  .expense-form {
+    grid-template-columns: 1fr;
+  }
+
+  .notion-dashboard {
+    padding: 12px 16px 24px 16px;
+  }
+
+  .navbar {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .notion-card {
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 12px;
+  }
+}
+
+/* ================= NETWORK STATUS ================= */
+.network-status {
+  max-width: 1100px;
+  margin: 8px auto;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #fde68a;
+  color: #92400e;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+body.dark .network-status {
+  background: #78350f;
+  color: #fde68a;
+}
+
+
+/* ================= ONBOARDING ================= */
+.onboarding-hint {
+  max-width: 1100px;
+  margin: 12px auto;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: #ecfeff;
+  color: #155e75;
+  border: 1px solid #67e8f9;
+}
+
+.onboarding-hint p {
+  margin: 6px 0 12px;
+  font-size: 14px;
+}
+
+body.dark .onboarding-hint {
+  background: #0f172a;
+  color: #e0f2fe;
+  border-color: #1e3a8a;
+}
+
+/* ================= SKELETON LOADER ================= */
+.skeleton-wrapper {
+  display: grid;
+  gap: 16px;
+}
+
+.skeleton {
+  border-radius: 12px;
+  background: linear-gradient(
+    90deg,
+    #e5e7eb 25%,
+    #f3f4f6 37%,
+    #e5e7eb 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+.summary-skel {
+  height: 120px;
+}
+
+.card-skel {
+  height: 220px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+body.dark .skeleton {
+  background: linear-gradient(
+    90deg,
+    #1f2937 25%,
+    #374151 37%,
+    #1f2937 63%
+  );
+}
+
+/* ================= DB ERROR ================= */
+.db-error {
+  max-width: 1100px;
+  margin: 8px auto;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #fee2e2;
+  color: #7f1d1d;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+body.dark .db-error {
+  background: #7f1d1d;
+  color: #fee2e2;
+}
+
+
+@media (max-width: 550px) {
+
+  /* ---- FIX TABLE OVERFLOW ON MOBILE ---- */
+  .expense-table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .expense-table thead,
+  .expense-table tbody,
+  .expense-table tr {
+    width: 100%;
+  }
+
+  .expense-table td,
+  .expense-table th {
+    font-size: 13px;
+  }
+
+  /* ---- BUTTONS TIGHTER ON MOBILE ---- */
+  .expense-table .btn.small {
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+
+  #expenseChart {
+    height: 200px;
+  }
+
+  .chart-wrapper {
+    height: 200px; /* mobile height */
+  }
+
+  .table-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .table-actions {
+    width: 100%;
+  }
+
+  /* .table-actions select,
+  .table-actions button {
+    width: 100%;
+  } */
+
+  .table-actions > * {
+    flex: 1 1 auto;
+    min-width: 120px;
+  }
+
+
+}
+
+
+@media (max-width: 450px) {
+
+  .notion-summary {
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .summary-card {
+    padding: 8px;
+    border-radius: 8px;
+  }
+
+  .summary-card h3 {
+    font-size: 12px;
+    /* line-height: 1.0; */
+  }
+
+  .summary-card p {
+    font-size: 20px;
+    /* line-height: 1.0; */
+  }
+}

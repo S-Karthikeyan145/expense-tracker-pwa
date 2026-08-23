@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login | Expense Tracker</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar notion-navbar">
+    <h2 class="app-title">Expense Tracker</h2>
+  </header>
+
+  <!-- LOGIN -->
+  <main class="notion-dashboard">
+    <section class="notion-card" style="max-width:420px; margin:auto;">
+      <h3>Welcome back</h3>
+
+      <p style="font-size:14px; color:#6b7280; margin-bottom:20px;">
+        This is a demo login to showcase app flow.<br>
+        No credentials are stored.
+      </p>
+
+      <form>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="you@example.com" required />
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" placeholder="••••••••" required />
+        </div>
+
+        <button type="submit" class="btn full">
+          Continue
+        </button>
+      </form>
+
+      <p style="font-size:13px; color:#9ca3af; margin-top:16px; text-align:center;">
+        Offline-first · Client-side session · Portfolio demo
+      </p>
+    </section>
+  </main>
+
+  <!-- MOCK LOGIN LOGIC -->
+  <script>
+    const form = document.querySelector("form");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      localStorage.setItem("auth_session", "true");
+      window.location.replace("dashboard.html");
+    });
+  </script>
+
+  
+</body>
+</html>

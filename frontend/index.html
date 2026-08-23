@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Expense Tracker</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar notion-navbar">
+    <h2 class="app-title">Expense Tracker</h2>
+  </header>
+
+  <!-- HERO -->
+  <main class="notion-dashboard">
+    <section class="notion-card" style="text-align:center; max-width:520px; margin:auto;">
+      <h2 style="margin-bottom:12px;">Track expenses. Even offline.</h2>
+
+      <p style="color:#6b7280; font-size:15px;">
+        A fast, offline-first expense tracker that keeps your data safe and always available.
+      </p>
+
+      <a href="login.html" class="btn full" style="margin-top:24px;">
+        Get Started
+      </a>
+
+      <p style="font-size:13px; color:#9ca3af; margin-top:14px;">
+        Works without internet · Installable · Secure local storage
+      </p>
+    </section>
+  </main>
+
+    <script>
+      if (localStorage.getItem("auth_session")) {
+        window.location.replace("dashboard.html");
+      }
+    </script>
+
+</body>
+</html>
